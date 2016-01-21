@@ -1,0 +1,29 @@
+# backup files
+*~
+*#
+*.asv
+
+# folders
+images/
+figs/
+
+# data
+*.mat
+*.csv
+
+# image files
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.fig
+
+*.pdf
+
+# compressed files
+*.zip
+*.rar
+
+# misc files
+scrap.*
+
