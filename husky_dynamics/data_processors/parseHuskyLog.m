@@ -1,5 +1,14 @@
-function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
-    
+function outStruct = parseHuskyLog(filename,dispFlag)
+    %PARSEHUSKYLOG
+    %
+    % outStruct = PARSEHUSKYLOG(filename,dispFlag)
+    %
+    % filename  - String.
+    % dispFlag  - Boolean. Default: false.
+    %
+    % outStruct - Struct with fields ('velLeft','velRight','t','lat','lon',...
+    % 'xyz','rpy','gpsStart')
+
     if nargin < 2
         dispFlag = false;
     end
@@ -24,12 +33,11 @@ function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
     % the right wheel velocity (m/s) from encoder 2
     velRight_ms(1,2:end) = double(diff(Encoder.Counts(2,:))) * distPerTick_m/deltaT_s;
     
-    
     % extract the "pose" fields from Ins(1,3)
     % Time, X, Y, Z, Roll, Pitch, Yaw, Forward Velocity, (Instantaneous path) Curvature
+        
     
-    
-    %% populate meas structure
+    %% populate outStruct structure
     pose = zeros(length(Ins(3).Time), 9);
     pose(:,1) = Ins(3).Time;
     
@@ -40,9 +48,12 @@ function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
     pose(:,2:3) = rad2deg(pose(:,2:3));
     pose(:,5:7) = Ins(3).Orientation';
     
+    % heading/yaw
+    theta = Ins(3).Orientation(3,:);
+    
     % compute the cosine and sine of the heading/yaw
-    c_theta = cos(Ins(3).Orientation(3,:));
-    s_theta = sin(Ins(3).Orientation(3,:));
+    c_theta = cos(theta);
+    s_theta = sin(theta);
     
     % iterate through and compute the body velocity
     for i= 1:length(c_theta)
@@ -76,18 +87,18 @@ function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
     solStatus = Ins(3).SolutionStatus;
     
     % first the timestamp t
-    meas.t = Encoder.Time;
+    t = Encoder.Time;
     
     % the INS data is currently generated at 1KHz and the Encoder data is
     % coming in at 100Hz - need to interpolate/match the timestamps
-    matchIdx = interp1(Ins(3).Time, 1:length(Ins(3).Time), meas.t, 'nearest');
+    matchIdx = interp1(Ins(3).Time, 1:length(Ins(3).Time), t, 'nearest');
     
     matchIdx(isnan(matchIdx)) = [];
     
     % just consider the elements of pose whose timestamp is close to the times
     % of the encoders
     pose = pose(matchIdx,:);
-    
+        
     % prune solType and solStatus
     solType = solType(matchIdx);
     solStatus = solStatus(matchIdx);
@@ -101,13 +112,13 @@ function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
     matchIdx = ((solType == 9) & (solStatus == 2));
     
     % prune the data further
-    pose = pose(matchIdx,:);
-    meas.t = meas.t(matchIdx);
-    meas.lat = pose(:,2); meas.lon = pose(:,3);
-    solType = solType(matchIdx);
-    solStatus = solStatus(matchIdx);
     velLeft_ms = velLeft_ms(matchIdx);
     velRight_ms = velRight_ms(matchIdx);
+    pose = pose(matchIdx,:);
+    t = t(matchIdx);
+    lat = pose(:,2); lon = pose(:,3);
+    solType = solType(matchIdx);
+    solStatus = solStatus(matchIdx);
     
     % conversion from Lat-Lon to UTM
     p1 = [pose(1,2), pose(1,3)];
@@ -123,23 +134,32 @@ function [meas,velLeft_ms,velRight_ms] = parseHuskyLog(filename,dispFlag)
     [pose(:,2) pose(:,3)] = mfwdtran(utmstruct, pose(:,2), pose(:,3));
     
     % the number of measurements
-    nm=length(meas.t);
-    
-    % update meas.pos
-    meas.pos = pose(:,2:4);
-    
-    %start at [0 0 0]. numerical error in animation otherwise
-    gps_start = meas.pos(1,:);
+    nMeasurements = length(t);
     
     % offset all the measurements to be zero indexed
-    meas.pos = meas.pos - ones(nm,1)*gps_start;
+    gps_start = pose(1,2:4);
+    pose(:,2:4) = pose(:,2:4)-ones(nMeasurements,1)*gps_start;
     
+    % build outStruct after all processing
+    outStruct.velLeft = velLeft_ms;
+    outStruct.velRight = velRight_ms;
+    outStruct.t = t;
+    outStruct.lat = lat;
+    outStruct.lon = lon;
+    outStruct.xyz = pose(:,2:4);
+    outStruct.rpy = pose(:,5:7);
+    outStruct.gpsStart = gps_start;
+        
+    % plot
     if dispFlag
-        figure; plot(meas.pos(:,1), meas.pos(:,2));
+        figure; plot(outStruct.xyz(:,1), outStruct.xyz(:,2));
         xlabel('Relative Easting (m)'); ylabel('Relative Northing (m)'); grid on;
         title('Husky slip data collection path');
+        axis equal;
+        padding = [-1 1];
+        xlim(xlim+padding);
+        ylim(ylim+padding);
         %figure; plot(0.5 * (velLeft_ms + velRight_ms));
     end
-    inpt = [];
-    
+       
 end
