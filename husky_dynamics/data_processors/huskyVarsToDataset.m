@@ -1,4 +1,4 @@
-function dataset = datasetFromHuskyVars(state,controls,t,period)
+function dataset = huskyVarsToDataset(state,controls,t,period)
     %DATASETFROMHUSKYVARS
     %
     % dataset = DATASETFROMHUSKYVARS(state,controls,t,period)

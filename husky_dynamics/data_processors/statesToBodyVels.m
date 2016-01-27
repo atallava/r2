@@ -1,4 +1,4 @@
-function [linV,angV] = bodyVelsFromStates(stateInit,stateFinal,dt)
+function [linV,angV] = statesToBodyVels(stateInit,stateFinal,dt)
     linDiff = norm(stateFinal(1:2)-stateInit(1:2));
     linV = linDiff/dt;
     angDiff = thDiff(stateInit(3),stateFinal(3));

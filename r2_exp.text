@@ -1,0 +1,4 @@
+### husky_dynamics ###
+* how do you ensure that train, holdout are from the same source or data stock?
+  put in a source-string into dataset\_train, that should match with the string
+  in dataset\_hold

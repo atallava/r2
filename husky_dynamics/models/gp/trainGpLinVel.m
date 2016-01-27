@@ -1,5 +1,7 @@
 fnameTrain = '../../data/dataset_gp_1_train_subsampled';
 load(fnameTrain);
+fnameHold = '../../data/dataset_gp_1_hold';
+datasetHold = load(fnameHold);
 
 %% params
 ylin = y(:,1);
@@ -14,7 +16,11 @@ hyp.lik = log(0.1);
 fprintf('Training gp lin vel.\n');
 clockLocal = tic();
 maxIterations = 50;
-hyp = minimize(hyp,@gp,-maxIterations,@infExact,meanFunc,covFunc,likFunc,x,ylin);
+
+% optimize on training nll
+fun = @(hyp) gp(hyp,infMethod,meanFunc,covFunc,likFunc,x,ylin);
+
+hyp = minimize(hyp,fun,-maxIterations);
 tComp = toc(clockLocal);
 fprintf('Computation time: %.3f.\n',tComp);
 nll = gp(hyp,infMethod,meanFunc,covFunc,likFunc,x,ylin);

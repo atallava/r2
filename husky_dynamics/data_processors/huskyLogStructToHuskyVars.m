@@ -1,4 +1,4 @@
-function [state,controls,t] = varsFromHuskyLogOut(huskyLogStruct)
+function [state,controls,t] = huskyLogStructToHuskyVars(huskyLogStruct)
     %VARSFROMHUSKYLOGOUT One more processing layer.
     %
     % [state,controls,t] = VARSFROMHUSKYLOGOUT(huskyLogStruct)

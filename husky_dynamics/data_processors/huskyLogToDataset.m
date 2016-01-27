@@ -7,6 +7,7 @@ logStruct = parseHuskyLog(huskyLogName);
 [state,controls,t] = varsFromHuskyLogOut(logStruct);
 period = min(diff(t));
 dataset = datasetFromHuskyVars(state,controls,t,period);
+sourceFname = huskyLogName;
 
 %%
-save(datasetFName,'huskyLogName','dataset');
+save(datasetFName,'sourceFname','dataset');

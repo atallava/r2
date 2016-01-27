@@ -30,8 +30,9 @@ function datasetToGpDataset(fnames)
         end
         % project angles to [0,2*pi]
         x(:,3) = mod(x(:,3),2*pi);
+        sourceFname = fname;
         
         datasetGpFname = strrep(fname,'dataset','dataset_gp');
-        save(datasetGpFname,'x','y');
+        save(datasetGpFname,'x','y','sourceFname');
     end
 end

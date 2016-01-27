@@ -3,7 +3,7 @@ gpLinVelFName = 'gp_lin_vel_01251736';
 load(gpLinVelFName,'gpLinVel');
 gpAngVelFName = 'gp_ang_vel_01251740';
 load(gpAngVelFName,'gpAngVel');
-trajFName = '../../data/trajectory_snippet.mat';
+trajFName = '../../data/dataset_1_traj_snippet.mat';
 load(trajFName,'states','controls','dt');
 stateInit = states(1,:);
 
