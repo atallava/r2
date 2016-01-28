@@ -1,4 +1,4 @@
-gpLinVelFname = 'gp_lin_vel_01251736';
+gpLinVelFname = 'gp_lin_vel_01281557';
 load(gpLinVelFname,'gpLinVel');
 datasetFname = '../../data/dataset_gp_1_hold.mat';
 load(datasetFname);

@@ -26,7 +26,7 @@ function datasetToGpDataset(fnames)
             
             x(j,1:3) = stateInit;
             x(j,4:5) = controls;
-            [y(j,1),y(j,2)] = bodyVelsFromStates(stateInit,stateFinal,dt);
+            [y(j,1),y(j,2)] = statesToBodyVels(stateInit,stateFinal,dt);
         end
         % project angles to [0,2*pi]
         x(:,3) = mod(x(:,3),2*pi);

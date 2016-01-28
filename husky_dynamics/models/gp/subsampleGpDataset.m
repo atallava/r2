@@ -1,7 +1,10 @@
 function subsampleGpDataset(fnameIn,arg2,fnameOut)
     %SUBSAMPLEGPDATASET 
     %
-    % SUBSAMPLEGPDATASET(fname,arg2)
+    % SUBSAMPLEGPDATASET(fname)
+    % SUBSAMPLEGPDATASET(fname,fracn)
+    % SUBSAMPLEGPDATASET(fname,maxElements)
+    % SUBSAMPLEGPDATASET(fname,arg2,fnameOut)
     %
     % fnameIn - String.
     % arg2  - Scalar. If <= 1, interpreted as fraction to retain. If integer > 1 it
@@ -16,7 +19,7 @@ function subsampleGpDataset(fnameIn,arg2,fnameOut)
     if arg2 <= 1
         nSubsampled = floor(arg2*nElements);
     else
-        condn = isinteger(arg2);
+        condn = mod(arg2,10) == 0;
         assert(condn,'subsampleGpDataset:invalidInput','If arg2 > 1, it must be an integer.');
         nSubsampled = arg2;
     end

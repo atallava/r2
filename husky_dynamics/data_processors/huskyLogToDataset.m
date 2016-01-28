@@ -4,9 +4,9 @@ datasetFName = '../data/dataset_1';
 
 %%
 logStruct = parseHuskyLog(huskyLogName);
-[state,controls,t] = varsFromHuskyLogOut(logStruct);
+[state,controls,t] = huskyLogStructToHuskyVars(logStruct);
 period = min(diff(t));
-dataset = datasetFromHuskyVars(state,controls,t,period);
+dataset = huskyVarsToDataset(state,controls,t,period);
 sourceFname = huskyLogName;
 
 %%

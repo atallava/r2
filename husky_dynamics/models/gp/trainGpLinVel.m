@@ -1,7 +1,5 @@
 fnameTrain = '../../data/dataset_gp_1_train_subsampled';
 load(fnameTrain);
-fnameHold = '../../data/dataset_gp_1_hold';
-datasetHold = load(fnameHold);
 
 %% params
 ylin = y(:,1);
