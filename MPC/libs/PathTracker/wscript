@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+import os
+
+def build(bld):
+
+  # name of the target
+  targetName='PathTracker'
+
+  # the list of source files that need to be built
+  libSrc = bld.path.ant_glob('*.cpp')
+
+  # build the library
+  bld.shlib(source=libSrc,
+            target=targetName,
+            install_path=bld.env.LIB_DIR,
+            use=['commonIncludes', 'dl', 'eigen', 'Simple3DSim', 'boost_log', 'boost_system'])
+
+  # install the headers
+  install_path = os.path.join(bld.env.INC_DIR, targetName)
+  libHeaders = bld.path.ant_glob('*.h')
+  bld.install_files(install_path, libHeaders)

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package>
+  <name>basil_pose_publisher</name>
+  <version>1.0.0</version>
+  <description>Reads BASIL messages and publishes it on ROS channel</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag --> 
+  <maintainer email="vrajagop@nrec.ri.cmu.edu">vrajagop</maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>
+  Copyright (C) 2015
+  National Robotics Engineering Center (NREC)
+  Robotics Institute
+  Carnegie Mellon University
+  All Rights Reserved
+  </license>
+
+
+  <!-- The *_depend tags are used to specify dependencies -->
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>Utils</build_depend>
+  <build_depend>basil_ros_support</build_depend>
+
+  <run_depend>std_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>basil_ros_support</run_depend>
+  <run_depend>Utils</run_depend>
+  <run_depend>basil_ros_support</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- You can specify that this package is a metapackage here: -->
+    <!-- <metapackage/> -->
+
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+</package>

@@ -31,5 +31,3 @@ gpLinVel = @(xQuery) gp(hyp,infMethod,meanFunc,covFunc,likFunc,...
 %% save
 fname = ['gp_lin_vel' '_' myDateStamp(2:5)] ;
 save(fname);
-
-

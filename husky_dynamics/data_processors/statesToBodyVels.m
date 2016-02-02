@@ -1,14 +1,15 @@
-function [linV,angV] = statesToBodyVels(stateInit,stateFinal,dt)
+function [linV,latV,angV] = statesToBodyVels(stateInit,stateFinal,dt)
     %STATESTOBODYVELS
     %
-    % [linV,angV] = STATESTOBODYVELS(stateInit,stateFinal,dt)
+    % [linV,latV,angV] = STATESTOBODYVELS(stateInit,stateFinal,dt)
     %
     % stateInit  -
     % stateFinal -
     % dt         -
     %
-    % linV       -
-    % angV       -
+    % linV       - Linear velocity.
+    % latV       - Lateral velocity.
+    % angV       - Angular velocity.
     
     linDiff = norm(stateFinal(1:2)-stateInit(1:2));
     linV = linDiff/dt;

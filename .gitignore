@@ -23,6 +23,7 @@ figs/
 # compressed files
 *.zip
 *.rar
+*.tgz
 
 # misc files
 scrap.*
