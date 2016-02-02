@@ -1,8 +1,7 @@
-gpLinVelFname = 'gp_lin_vel_01281557';
+gpLinVelFname = 'gp_lin_vel_02021657';
 load(gpLinVelFname,'gpLinVel');
-datasetFname = '../../data/dataset_gp_1_hold.mat';
+datasetFname = '../../data/dataset_gp_lin_vel_1_hold.mat';
 load(datasetFname);
-y = y(:,1);
 
 %% predict
 yPred = gpLinVel(x);

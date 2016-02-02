@@ -153,6 +153,9 @@ function outStruct = parseHuskyLog(filename,dispFlag)
     % plot
     if dispFlag
         figure; plot(outStruct.xyz(:,1), outStruct.xyz(:,2));
+        hold on;
+        quiver(outStruct.xyz(:,1),outStruct.xyz(:,2),...
+            cos(outStruct.rpy(:,end)),sin(outStruct.rpy(:,end)),0.1);
         xlabel('Relative Easting (m)'); ylabel('Relative Northing (m)'); grid on;
         title('Husky slip data collection path');
         axis equal;

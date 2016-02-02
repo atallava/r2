@@ -15,7 +15,7 @@ function datasetToGpDataset(fnames)
         
         nElements = length(dataset);
         x = zeros(nElements,5);
-        y = zeros(nElements,2);
+        [yLinVel,yLatVel,yAngVel] = deal(zeros(nElements,1));
         
         % any scaling of pose or vels needed?
         for j = 1:nElements
@@ -26,13 +26,24 @@ function datasetToGpDataset(fnames)
             
             x(j,1:3) = stateInit;
             x(j,4:5) = controls;
-            [y(j,1),y(j,2)] = statesToBodyVels(stateInit,stateFinal,dt);
+            [yLinVel(j),yLatVel(j),yAngVel(j)] = ...
+                statesToBodyVels(stateInit,stateFinal,dt);
         end
         % project angles to [0,2*pi]
         x(:,3) = mod(x(:,3),2*pi);
         sourceFname = fname;
         
-        datasetGpFname = strrep(fname,'dataset','dataset_gp');
+        datasetGpFname = strrep(fname,'dataset','dataset_gp_lin_vel');
+        y = yLinVel;
         save(datasetGpFname,'x','y','sourceFname');
+        fprintf('File saved as %s.\n',datasetGpFname);
+        datasetGpFname = strrep(fname,'dataset','dataset_gp_lat_vel');
+        y = yLatVel;
+        save(datasetGpFname,'x','y','sourceFname');
+        fprintf('File saved as %s.\n',datasetGpFname);
+        datasetGpFname = strrep(fname,'dataset','dataset_gp_ang_vel');
+        y = yAngVel;
+        save(datasetGpFname,'x','y','sourceFname');
+        fprintf('File saved as %s.\n',datasetGpFname);
     end
 end

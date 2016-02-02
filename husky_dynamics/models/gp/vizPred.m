@@ -1,36 +1,49 @@
 % load variables
-gpLinVelFName = 'gp_lin_vel_01281557';
+gpLinVelFName = 'gp_lin_vel_02021657';
 load(gpLinVelFName,'gpLinVel');
-gpAngVelFName = 'gp_ang_vel_01281605';
+gpAngVelFName = 'gp_lat_vel_02021650';
+load(gpAngVelFName,'gpLatVel');
+gpAngVelFName = 'gp_ang_vel_02021654';
 load(gpAngVelFName,'gpAngVel');
-datasetFName = '../../data/dataset_gp_1_train_subsampled';
+
+datasetFName = '../../data/dataset_gp_lin_vel_1_hold';
 load(datasetFName);
+linVel = y;
+
+datasetFName = '../../data/dataset_gp_lat_vel_1_hold';
+load(datasetFName);
+latVel = y;
+
+datasetFName = '../../data/dataset_gp_ang_vel_1_hold';
+load(datasetFName);
+angVel = y;
 
 %% subsample data
 nElements = size(x,1);
 ids = randsample(1:nElements,100);
-x = x(ids,:); y = y(ids,:);
+x = x(ids,:);
+linVel = linVel(ids,:);
+latVel = latVel(ids,:);
+angVel = angVel(ids,:);
 
 %% predict
-yPred = zeros(size(y));
-yPred(:,1) = gpLinVel(x);
-yPred(:,2) = gpAngVel(x);
+linVelPred = gpLinVel(x);
+latVelPred = gpLatVel(x);
+angVelPred = gpAngVel(x);
 
-% get states
+%% calc states
 nElements = size(x,1);
 statesInit = x(:,1:3);
-dt = 0.01;
-statesFinal = zeros(nElements,3);
-statesFinalPred = zeros(nElements,3);
-for i = 1:nElements
-    statesFinal(i,3) = statesInit(i,3)+y(i,2)*dt;
-    statesFinal(i,1) = statesInit(i,1)+y(i,1)*dt*cos(statesFinal(i,3));
-    statesFinal(i,2) = statesInit(i,2)+y(i,1)*dt*sin(statesFinal(i,3));
-    
-    statesFinalPred(i,3) = statesInit(i,3)+yPred(i,2)*dt;
-    statesFinalPred(i,1) = statesInit(i,1)+yPred(i,1)*dt*cos(statesFinalPred(i,3));
-    statesFinalPred(i,2) = statesInit(i,2)+yPred(i,1)*dt*sin(statesFinalPred(i,3));
-end
+dt = 0.01*ones(nElements,1);
+statesFinal = bodyVelsToState(statesInit,linVel,latVel,angVel,dt);
+statesFinalPred = bodyVelsToState(statesInit,linVelPred,latVelPred,angVelPred,dt);
+
+%% state err
+xyErr = statesFinal(:,1:2)-statesFinalPred(:,1:2);
+xyErr = xyErr.^2; xyErrVec = sqrt(sum(xyErr,2)); 
+thErrVec = thDiff(statesFinal(:,3),statesFinalPred(:,3));
+fprintf('xy err. Mean: %.4f, std: %.4f\n',mean(xyErrVec),std(xyErrVec));
+fprintf('th err. Mean: %.4f, std: %.4f\n',mean(thErrVec),std(thErrVec));
 
 %% viz
 hf = figure; 
@@ -42,7 +55,7 @@ u(1,:) = statesInit(:,1); u(2,:) = statesFinal(:,1);
 v(1,:) = statesInit(:,2); v(2,:) = statesFinal(:,2);
 p(1,:) = statesInit(:,1); p(2,:) = statesFinalPred(:,1); 
 q(1,:) = statesInit(:,2); q(2,:) = statesFinalPred(:,2);
-%%
+
 plot(u,v,'b-+'); 
 quiver(statesInit(:,1),statesInit(:,2),cos(statesInit(:,3)),sin(statesInit(:,3)),...
     0.005,'color',[0 0 1],'showarrowhead','off');

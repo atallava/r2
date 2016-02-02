@@ -11,6 +11,7 @@ function subsampleGpDataset(fnameIn,arg2,fnameOut)
     % is the number of elements to keep.
     % fnameOut - String. Defaults to [fnameIn '_subsampled'].
     
+    fnameIn = stripFileExtension(fnameIn);
     if nargin < 2
         arg2 = 3000;
     end
@@ -34,5 +35,5 @@ function subsampleGpDataset(fnameIn,arg2,fnameOut)
         fnameOut = [fnameIn '_subsampled'];
     end
     save(fnameOut,'-struct','data');
-    fprintf('New file saved as %s.\n',fnameOut);
+    fprintf('File saved as %s.\n',fnameOut);
 end

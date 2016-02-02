@@ -1,10 +1,10 @@
-gpAngVelFname = 'gp_ang_vel_02021654';
-load(gpAngVelFname,'gpAngVel');
-datasetFname = '../../data/dataset_gp_ang_vel_1_hold.mat';
+gpLatVelFname = 'gp_lat_vel_02021650';
+load(gpLatVelFname,'gpLatVel');
+datasetFname = '../../data/dataset_gp_lat_vel_1_hold.mat';
 load(datasetFname);
 
 %% predict
-yPred = gpAngVel(x);
+yPred = gpLatVel(x);
 
 %% errors
 errVec = (yPred-y).^2;
