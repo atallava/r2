@@ -24,17 +24,5 @@ function [statesFinal] = bodyVelsToState(statesInit,linVels,latVels,angVels,dts)
     dpPerp = bsxfun(@times,s,dts.*latVels); % [nStates,2]
     dp = dpPll+dpPerp;
     pf = pi+dp;
-    statesFinal = [pf thi];
-    
-%     pi = stateInit(1:2); pi = flipVecToColumn(pi);
-%     thi = stateInit(3);
-%     thf = thi+angVel*dt;
-%     r = [cos(thf); sin(thf)];
-%     k = [0; 0; 1];
-%     s = cross(k,[r; 0]); s = s(1:2);
-%     dpPll = dt*linVel.*r;
-%     dpPerp = dt*latVel.*s;
-%     dp = dpPll+dpPerp;
-%     pf = pi+dp;
-%     stateFinal = [pf' thf];    
+    statesFinal = [pf thf];
 end
