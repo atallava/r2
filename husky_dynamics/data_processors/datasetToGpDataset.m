@@ -17,20 +17,20 @@ function datasetToGpDataset(fnames)
         x = zeros(nElements,5);
         [yLinVel,yLatVel,yAngVel] = deal(zeros(nElements,1));
         
-        % any scaling of pose or vels needed?
+        % TODO. any scaling of pose or vels needed?
         for j = 1:nElements
             stateInit = dataset(j).stateInit;
             stateFinal = dataset(j).stateFinal;
             controls = dataset(j).controls;
             dt = dataset(j).dt;
             
-            x(j,1:3) = stateInit;
-            x(j,4:5) = controls;
+            x(j,:) = dynamicsVarsToGpStates(stateInit,controls);
+            
             [yLinVel(j),yLatVel(j),yAngVel(j)] = ...
                 statesToBodyVels(stateInit,stateFinal,dt);
         end
-        % project angles to [0,2*pi]
-        x(:,3) = mod(x(:,3),2*pi);
+        
+        % store source file name
         sourceFname = fname;
         
         datasetGpFname = strrep(fname,'dataset','dataset_gp_lin_vel');

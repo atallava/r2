@@ -26,7 +26,7 @@ function [states,linVel,latVel,angVel] = predTraj(gpLinVel,gpLatVel,gpAngVel,sta
     xQuery = zeros(nTimesteps,dimState+dimControls);
         
     for i = 1:nTimesteps
-        xQuery(i,:) = [states(i,:) controls(i,:)];
+        xQuery(i,:) = dynamicsVarsToGpStates(states(i,:),controls(i,:));
         linVel(i) = gpLinVel(xQuery(i,:));
         latVel(i) = gpLatVel(xQuery(i,:));
         angVel(i) = gpAngVel(xQuery(i,:));

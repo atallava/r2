@@ -39,10 +39,10 @@ statesFinal = bodyVelsToState(statesInit,linVel,latVel,angVel,dt);
 statesFinalPred = bodyVelsToState(statesInit,linVelPred,latVelPred,angVelPred,dt);
 
 %% state err
-xyErr = statesFinal(:,1:2)-statesFinalPred(:,1:2);
-xyErr = xyErr.^2; xyErrVec = sqrt(sum(xyErr,2)); 
+posnErr = statesFinal(:,1:2)-statesFinalPred(:,1:2);
+posnErr = posnErr.^2; posnErrVec = sqrt(sum(posnErr,2)); 
 thErrVec = thDiff(statesFinal(:,3),statesFinalPred(:,3));
-fprintf('xy err. Mean: %.4f, std: %.4f\n',mean(xyErrVec),std(xyErrVec));
+fprintf('posn err. Mean: %.4f, std: %.4f\n',mean(posnErrVec),std(posnErrVec));
 fprintf('th err. Mean: %.4f, std: %.4f\n',mean(thErrVec),std(thErrVec));
 
 %% viz
