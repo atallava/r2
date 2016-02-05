@@ -1,0 +1,52 @@
+\documentclass[a4paper, 11pt]{article}
+%\usepackage{fullpage}
+\setlength{\parindent}{0in}
+
+\usepackage{setspace}
+\onehalfspacing
+
+%\usepackage{biblatex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{./figs/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{ifthen,version}
+\usepackage{color}
+\DeclareMathOperator{\tr}{tr}
+\newboolean{include-notes}
+\setboolean{include-notes}{true}
+\newcommand{\atnote}[1]{\ifthenelse{\boolean{include-notes}}
+ {\textcolor{red}{\textbf{AT: #1}}}{}}
+
+\title{Predictive Dynamics}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+Predictive dynamics is different from system identification. Some references for
+fitting dynamics. There is no underlying true model assumed. Good thing is more
+powerful function classes, unfortunately minimum risk so don't get as good
+bounds. Vidyasagar's reference. Introduce a mathematical notation.
+
+\begin{itemize}
+\item Generalization guarantees for learning from data. Shalizi's work. However
+  this seems restrictive. What are more general assumptions under which they hold?
+\item Domain adaptation for time-series data. Use as a simulator, want a warning system.
+\item Predictive dynamics in optimal control. Drew's work.
+\item Predictive dynamics in stability. Most out-there parts.
+\end{\itemize}
+
+\begin{thebibliography}{99}
+\bibitem{at15} 
+Tallavajhula, Abhijeet, and Alonzo Kelly. "Construction and Validation of a High
+Fidelity Simulator for a Planar Range Sensor."
+\end{thebibliography}
+
+\end{document}
+
+
