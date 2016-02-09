@@ -7,6 +7,7 @@
 
 %\usepackage{biblatex}
 \usepackage{amsmath}
+\usepackage{bm}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \graphicspath{{./figs/}}
@@ -28,23 +29,89 @@
 \begin{document}
 \maketitle
 
-Predictive dynamics is different from system identification. Some references for
-fitting dynamics. There is no underlying true model assumed. Good thing is more
-powerful function classes, unfortunately minimum risk so don't get as good
-bounds. Vidyasagar's reference. Introduce a mathematical notation.
+In traditional system identification, a known form of the dynamics is assumed,
+and the problem is estimate the true parameters. The case of interest here is
+when no form for the true dynamics is assumed. This is the case when powerful,
+but difficult to interpret, function approximators, such as neural networks, may
+be trained on data to result in predictive dynamics models. The performance of
+such models is related to the data-generating processes. How does performance
+generalize? Can questions of control and stability be answered with such models?
+
+A predictive model is given by $h(\theta)$, where $\theta \in \Theta$ is the
+parameter which we can tune. $U$ and $Y$ denote the input and output set,
+respectively. Data is available in the form of a time series $\{(u_t,y_t)\}$,
+where $u_t$ is the input to the unknown system and $y_t$ is the output at time
+$t$. $\bm{u_t}$ is the set of controls upto time $t-1$,
+\begin{align*}
+  \bm{u_t} = (u_{t-1},u_{t-2},\dots)
+\end{align*}
+The prediction at time $t$ is 
+\begin{align*}
+  \hat{y}_t(\theta) = h(\theta)\cdot\bm{u_t}
+\end{align*}
+The quality of the prediction is measured by a loss function,
+$l(y_t,\hat{y}_t(\theta))$. The parameter $\theta$ is tuned by minimizing the
+following objective function
+\begin{align}
+  \hat{J}(\theta) = \frac{1}{T}\sum_{i=1}^Tl(y_t,\hat{y}_t(\theta)
+\end{align}
+The hat notation is used to emphasize that this is a finite-sample objective.
 
 \begin{itemize}
-\item Generalization guarantees for learning from data. Shalizi's work. However
-  this seems restrictive. What are more general assumptions under which they hold?
-\item Domain adaptation for time-series data. Use as a simulator, want a warning system.
+\item The first question concerns generalization guarantees. What is the
+  population version of the objective $J(\theta)$? If the minimization is
+  performed exactly and the corresponding parameter is $\hat{\theta}$, do we
+  have $\hat{J}(\hat{\theta}) \rightarrow J(\hat{\theta})$? The latter question
+  is one of concentration inequalities. \cite{vidyasagar} and \cite{dmd} assume
+  that the time-series is discrete. Let $P_{\bm{u,y}}$ denote the probability
+  law of the time series $\{(u_t,y_t)\}$. Then the population objective, also
+  called the risk, is
+  \begin{align*}
+    J(\theta) = E[l(y_t,\hat{y}_t(\theta)]
+  \end{align*}
+  With further assumptions on the time-series (e.g., it is $\beta$-mixing),
+  \cite{vidyasagar} and \cite{dmd} show uniform convergence of empirical
+  means. Analogous to the VC-dimension, a complexity measure for the class of
+  models is used. 
+
+  In practice, when collecting data on robots, the assumptions may not
+  hold. What are more general conditions under which generalization guarantees
+  may be obtained? For example, what if $P_{\bm{u,y}}$ were decaying to a
+  stationary distribution? Or the true system is such that $P(y_t|\bm{u_t})$ is
+  a stationary distribution?
+
+\item One use for a model $h(\theta)$ may be used is in simulation. Suppose
+  $P_{\bm{u,y}}$ were stationary. The only guarantee of performance is of low
+  risk under $P_{\bm{u,y}}$. A user of the simulator may violate the
+  distribution, and we would like to generate a warning, stating the predictions
+  may have large error. This is the question of performance of a model under a
+  different test distribution. It has been studied in the iid setting in
+  learning under the heading domain adaptation, \cite{bendavid}. The second
+  question is: How do domain adaptation results extend to the time-series case?
+
 \item Predictive dynamics in optimal control. Drew's work.
+
 \item Predictive dynamics in stability. Most out-there parts.
-\end{\itemize}
+\end{itemize}
 
 \begin{thebibliography}{99}
 \bibitem{at15} 
 Tallavajhula, Abhijeet, and Alonzo Kelly. "Construction and Validation of a High
 Fidelity Simulator for a Planar Range Sensor."
+
+\bibitem{vidyasagar}
+Vidyasagar, M., and Rajeeva L. Karandikar. ``A learning theory approach to
+system identification.'' Technical committe on robust control. Portugal:
+Workshop of IFAC. 2002.
+
+\bibitem{dmd}
+McDonald, Daniel J., Cosma Rohilla Shalizi, and Mark Schervish. ``Generalization
+error bounds for stationary autoregressive models.'' arXiv preprint
+arXiv:1103.0942 (2011).
+
+\bibitem{bendavid}
+Ben-David, Shai, et al. ``Analysis of representations for domain adaptation.''
+Advances in neural information processing systems 19 (2007): 137.
 \end{thebibliography}
 
 \end{document}

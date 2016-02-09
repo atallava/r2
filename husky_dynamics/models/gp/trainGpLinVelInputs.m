@@ -1,12 +1,16 @@
 % filenames
 fnameTrain = '../../data/dataset_gp_lin_vel_1_train_subsampled';
-gpWrapperFname = ['gp_lin_vel' '_' myDateStamp(2:5)] ;
+gpWrapperFname = ['data/gp_lin_vel' '_' myDateStamp(2:5)] ;
 
 %% gp params
 infMethod = @infExact;
-meanFunc = [];
-covFunc = @covSEiso; 
-hyp.cov = [0; 0];
+meanFunc = {@meanConst};
+hyp.mean = 0;
+covFunc = {@covMaternard,5}; 
+dimState = 5;
+sf = 2;
+vecArd = rand(dimState,1);
+hyp.cov = log([vecArd; sf]);
 likFunc = @likGauss;
 hyp.lik = log(0.1);
 

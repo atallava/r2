@@ -6,6 +6,7 @@
 # folders
 images/
 figs/
+data/
 
 # data
 *.mat
@@ -18,13 +19,17 @@ figs/
 *.bmp
 *.fig
 
-*.pdf
-
 # compressed files
 *.zip
 *.rar
 *.tgz
 
-# misc files
-scrap.*
+# tex 
+main.aux
+main.bbl
+main.blg
+main.log
+main.out
+main.pdf
+
 
