@@ -10,8 +10,11 @@ cd(huskyDynamicsPath);
 % for various helpers
 addpath(genpath([pathToM '/neato_utils']));
 
+% generic data processors
 addpath([huskyDynamicsPath '/data_processors']);
 
+% models
+addpath(genpath([huskyDynamicsPath '/models']));
 
-
-
+% unsorted
+addpath(genpath([huskyDynamicsPath '/unsorted']));

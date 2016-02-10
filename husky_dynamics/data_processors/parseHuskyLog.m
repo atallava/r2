@@ -103,10 +103,10 @@ function outStruct = parseHuskyLog(filename,dispFlag)
     solType = solType(matchIdx);
     solStatus = solStatus(matchIdx);
     
-    % figure; hold on;
-    % plot(0.5 * (velLeft_ms + velRight_ms), 'r');
-    % plot(pose(:,8), 'g');
-    
+%     figure; hold on;
+%     plot(0.5 * (velLeft_ms + velRight_ms), 'r');
+%     plot(pose(:,8), 'g');
+%     
     % Here, we consider only a subset of the data where solType is 9 (RTK)
     % and solStatus is 2 (Navigating)
     matchIdx = ((solType == 9) & (solStatus == 2));
@@ -154,8 +154,10 @@ function outStruct = parseHuskyLog(filename,dispFlag)
     if dispFlag
         figure; plot(outStruct.xyz(:,1), outStruct.xyz(:,2));
         hold on;
+        quiverScale = 1e-3;
         quiver(outStruct.xyz(:,1),outStruct.xyz(:,2),...
-            cos(outStruct.rpy(:,end)),sin(outStruct.rpy(:,end)),0.1);
+            quiverScale*cos(outStruct.rpy(:,end)),quiverScale*sin(outStruct.rpy(:,end)),...
+            'autoscale','off');
         xlabel('Relative Easting (m)'); ylabel('Relative Northing (m)'); grid on;
         title('Husky slip data collection path');
         axis equal;

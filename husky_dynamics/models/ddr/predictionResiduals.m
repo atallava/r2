@@ -1,8 +1,8 @@
-function residuals = predictionResiduals(dataset,W)
+function residuals = predictionResiduals(W,dataset)
   nElements = length(dataset);
   residuals = zeros(nElements,3);
 
-  statesFinalPred = predict(dataset,W);
+  statesFinalPred = predict(W,dataset);
   % TODO: check this access method
   statesFinal = [dataset.stateFinal];
   residuals(:,1:2) = stateFinal(:,1:2)-stateFinalPred(:,1:2);
