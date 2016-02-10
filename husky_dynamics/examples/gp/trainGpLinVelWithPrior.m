@@ -6,7 +6,24 @@ datasetTransformFunc = @dynDatasetToGpLinVelDataset;
 gpWrapperFname = ['data/gp_lin_vel' '_' myDateStamp(2:5)] ;
 
 %% gp params
-infMethod = @infExact;
+dimState = 5;
+
+priorMeanM = 0;
+priorMeanS2 = 0.5;
+priorCovM = ones(dimState+1,1);
+priorCovS2 = symmMatFromTril(...
+    [0.5 0.25 0.25 0 0 0, ...
+    0.5 0.25 0 0 0, ...
+    0.5 0 0 0, ...
+    0.5 0.25 0, ...
+    0.5 0, ...
+    0.5]);
+
+% prior on cov hyp
+prior.multi{1} = {@priorGaussMulti,priorCovM,priorCovS2,...
+    struct('cov',(1:dimState+1))};
+
+infMethod = {@infPrior,@infExact,prior};
 
 meanFunc = {@meanConst};
 hyp.mean = 0;
