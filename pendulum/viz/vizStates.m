@@ -5,8 +5,16 @@ function hf = vizStates(states,physicalParams)
         error('l not a field in physicalParams.');
     end
     
+    % subsample states 
+    maxStates = 10;
+    if size(states,1) > maxStates
+        ids = linspace(1,size(states,1),maxStates);
+        ids = floor(ids);
+        states = states(ids,:);
+    end
+    
     pivotPt = [l l];
-    nStates = size(states,1);    
+    nStates = size(states,1);
     massPts = zeros(nStates,2);
     massPts(:,1) = l+l.*sin(states(:,1));
     massPts(:,2) = l-l.*cos(states(:,1));
@@ -18,7 +26,7 @@ function hf = vizStates(states,physicalParams)
     xlim([-padding 2*l+padding]);
     ylim([-padding 2*l+padding]);
     box on;
-    transparencies = linspace(0.2,1,nStates);
+    transparencies = linspace(0,0.8,nStates);
     hPlots = cell(1,nStates);
     for i = 1:nStates
         hPlots{i} = plot([pivotPt(1) massPts(i,1)],...
@@ -27,4 +35,7 @@ function hf = vizStates(states,physicalParams)
     end
     radii = 0.05*l*ones(nStates,1);
     viscircles(massPts,radii);
+    
+    xlabel('x');
+    ylabel('y');
 end

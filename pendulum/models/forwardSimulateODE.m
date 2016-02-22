@@ -1,14 +1,15 @@
-function states = forwardSimulate(stateInit,controls,dt,physicalParams)
-    %FORWARDSIMULATE
+function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps,physicalParams)
+    %FORWARDSIMULATEODE
     %
-    % states = FORWARDSIMULATE(stateInit,controls,dt,physicalParams)
+    % [t,states,controls] = FORWARDSIMULATEODE(stateInit,controller,dt,nSteps,physicalParams)
     %
     % stateInit      - [1,2] array.
-    % controls       - [nSteps,1] array of torques.
+    % controller       - Function handle
     % dt             - Scalar timestep.
     % physicalParams - Struct with fields ('m','l','g')
     %
     % states         - [nSteps,2] array.
+    % controls       - [nSteps,1] array of torques.
 
     % unpack physical params
     if isfield(physicalParams,'m')
@@ -26,16 +27,20 @@ function states = forwardSimulate(stateInit,controls,dt,physicalParams)
     else
         g = 9.81;
     end
-
-    nSteps = size(controls,1);
+    
+    % states(i,1) = theta
+    % states(i,2) = theta dot
     states = zeros(nSteps,2);
     state = stateInit;
-    % euler integration
+    
+    controls = zeros(nSteps,1);
+    t = [1:nSteps]*dt;
+    
     for i = 1:nSteps
-        accn = (controls(i)-m*g*l*sin(state(1)))/...
-            (m*l^2);
-        state(1) = state(1)+state(2)*dt;
-        state(2) = state(2)+accn*dt;
+        controls(i) = controller(t(i)-dt,state);
+        derivatives = @(t,x) systemDerivatives(t,x,controls(i),physicalParams);
+        [~,odeOut] = ode45(derivatives,[t(i)-dt t(i)],state);
+        state = odeOut(end,:);
         states(i,:) = state;
     end
 end

@@ -28,10 +28,16 @@ function outStruct = parseHuskyLog(filename,dispFlag)
     velRight_ms = zeros(1,length(Encoder.Time));
     
     % the left wheel velocity (m/s) from encoder 1 - notice the sign flip
-    velLeft_ms(1,2:end) = double(diff(-1.0*Encoder.Counts(1,:))) * distPerTick_m/deltaT_s;
+    % (for rcta log, 3)
+%     leftEncoderId = 1;
+    leftEncoderId = 3;
+    velLeft_ms(1,2:end) = double(diff(-1.0*Encoder.Counts(leftEncoderId,:))) * distPerTick_m/deltaT_s;
     
-    % the right wheel velocity (m/s) from encoder 2
-    velRight_ms(1,2:end) = double(diff(Encoder.Counts(2,:))) * distPerTick_m/deltaT_s;
+    % the right wheel velocity (m/s) from encoder 2 
+    % (for rcta log, 4)
+%     rightEncoderId = 2;
+    rightEncoderId = 4;
+    velRight_ms(1,2:end) = double(diff(Encoder.Counts(rightEncoderId,:))) * distPerTick_m/deltaT_s;
     
     % extract the "pose" fields from Ins(1,3)
     % Time, X, Y, Z, Roll, Pitch, Yaw, Forward Velocity, (Instantaneous path) Curvature
@@ -154,7 +160,7 @@ function outStruct = parseHuskyLog(filename,dispFlag)
     if dispFlag
         figure; plot(outStruct.xyz(:,1), outStruct.xyz(:,2));
         hold on;
-        quiverScale = 1e-3;
+        quiverScale = 10e-3;
         quiver(outStruct.xyz(:,1),outStruct.xyz(:,2),...
             quiverScale*cos(outStruct.rpy(:,end)),quiverScale*sin(outStruct.rpy(:,end)),...
             'autoscale','off');
