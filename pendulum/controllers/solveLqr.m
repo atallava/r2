@@ -1,5 +1,17 @@
-function [K,V] = lqrControls(A,B,T,Q,R)
-    
+function [K,V] = solveLqr(A,B,T,Q,R)
+    %SOLVELQR
+    %
+    % [K,V] = SOLVELQR(A,B,T,Q,R)
+    %
+    % A -
+    % B -
+    % T -
+    % Q -
+    % R -
+    %
+    % K - Cell array.
+    % V - Cell array.
+
     % cost matrices
     % check for > 0
     condn = all(eig(Q) > 0);
