@@ -6,9 +6,10 @@ function F = movieFramesFromStates(states,physicalParams)
     end
     
     % subsample states 
-    maxStates = 10;
+    maxStates = 1e3;
     if size(states,1) > maxStates
-        ids = linspace(1,size(states,1),maxStates);
+        startId = randsample(1:(size(states,1)-maxStates),1);
+        ids = startId:(startId+maxStates-1);
         ids = floor(ids);
         states = states(ids,:);
     end

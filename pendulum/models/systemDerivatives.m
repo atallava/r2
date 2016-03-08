@@ -1,4 +1,4 @@
-function xDot = systemDerivatives(t,x,controls,physicalParams,noise)
+function xDot = systemDerivatives(t,x,controls,physicalParams)
     %SYSTEMDERIVATIVES
     %
     % xDot = SYSTEMDERIVATIVES(t,x,controls,physicalParams)
@@ -16,7 +16,4 @@ function xDot = systemDerivatives(t,x,controls,physicalParams,noise)
     
     % columnification
     xDot = xDot';
-    
-    % add noise
-    xDot = xDot+flipVecToColumn(noise);
 end

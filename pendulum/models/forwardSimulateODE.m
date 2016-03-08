@@ -34,21 +34,23 @@ function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps
     state = stateInit;
     
     % motion noise
-    if isfield(physicalParams,'motionNoise')
-%         derivativeNoise = randn(nSteps,2)*chol(physicalParams.motionNoise);
-        derivativeNoise = [rand(nSteps,1)*2 rand(nSteps,1)*0];
+    if isfield(physicalParams,'controlNoise')
+        controlNoise = randn(nSteps,1)*sqrt(physicalParams.controlNoise.variance);
     else
-        derivativeNoise = zeros(nSteps,2);
+        controlNoise = zeros(nSteps,2);
     end
     
     controls = zeros(nSteps,1);
     t = [1:nSteps]*dt;
     
     for i = 1:nSteps
-        controls(i) = controller(t(i)-dt,state);
-        derivatives = @(t,x) systemDerivatives(t,x,controls(i),physicalParams,derivativeNoise(i,:));
+        controls(i) = controller(t(i)-dt,state)+controlNoise(i);
+        derivatives = @(t,x) systemDerivatives(t,x,controls(i),physicalParams);
         [~,odeOut] = ode45(derivatives,[t(i)-dt t(i)],state);
         state = odeOut(end,:);
+        % wrap angle to [0,2*pi] 
+        % otherwise unexpected things might happen
+        state(1) = mod(state(1),2*pi);
         states(i,:) = state;
     end
 end

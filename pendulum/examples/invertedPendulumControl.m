@@ -9,9 +9,9 @@ load(fnameController,'controller');
 %% forward simulate for some time
 dt = 0.01;
 
-state0 = [pi+deg2rad(0) 0];
+state0 = [pi+deg2rad(0) 0.0];
 
-nSteps = 2000;
+nSteps = 5000;
 [t,states,controls] = forwardSimulateODE(state0,controller,dt,nSteps,physicalParams);
 
 %% viz system

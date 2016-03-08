@@ -9,9 +9,8 @@ physicalParams.l = 1;
 % gravitational acceleration, m/s
 physicalParams.g = 10;
 
-% motion noise
-physicalParams.motionNoise = [deg2rad(1e4)^2 0; ...
-    0 deg2rad(1e4)^2];
+% control noise
+physicalParams.controlNoise.variance = 1e4; 
 
 %% save
 save('../data/physical_params_noisy','physicalParams');
