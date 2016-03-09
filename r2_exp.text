@@ -2,3 +2,13 @@
 * how do you ensure that train, holdout are from the same source or data stock?
   put in a source-string into dataset\_train, that should match with the string
   in dataset\_hold
+
+### pendulum ###
+* standardize dataset formats. the names of datasets, the names of variables
+  that are in it. a bit of it is enforced by the gp code, need to complete it  
+* examples scripts should be better structured, with subdirs
+* better comments for trainGp. when train
+* why are there so many data folders? keep one at root, and then its subdirs
+* henceforth, make variables being loading from file explicit
+* utils gp is common code. the individual folder contain code about how to
+  transform datasets, predict over entire datasets, predict trajectories etc.

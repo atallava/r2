@@ -11,7 +11,7 @@ dt = 0.01;
 state0 = [deg2rad(90) 0.0];
 
 nSteps = 2000;
-[t,states,controls] = forwardSimulateODE(state0,controller,dt,nSteps,physicalParams);
+[t,states,statesDot,controls] = forwardSimulateODE(state0,controller,dt,nSteps,physicalParams);
 
 %% viz system
 hfig1 = vizStates([state0; states],physicalParams);
@@ -28,4 +28,4 @@ title('theta_dot');
 %% save trajectory
 fnameTrajectory = '../data/uncontrolled_pendulum_trajectory';
 save(fnameTrajectory,'physicalParams','controller','dt','state0','nSteps',...
-    't','states','controls');
+    't','states','statesDot','controls');

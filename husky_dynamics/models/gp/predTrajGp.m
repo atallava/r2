@@ -1,4 +1,4 @@
-function [states,linVel,latVel,angVel] = predTrajGp(stateInit,controls,dt,gpLinVel,gpLatVel,gpAngVel)\
+function [states,linVel,latVel,angVel] = predTrajGp(stateInit,controls,dt,gpLinVel,gpLatVel,gpAngVel)
     %PREDTRAJGP
     %
     % [states,linVel,latVel,angVel] = PREDTRAJGP(stateInit,controls,dt,gpLinVel,gpLatVel,gpAngVel)

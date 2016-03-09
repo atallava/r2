@@ -1,4 +1,4 @@
-function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps,physicalParams)
+function [t,states,statesDot,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps,physicalParams)
     %FORWARDSIMULATEODE
     %
     % [t,states,controls] = FORWARDSIMULATEODE(stateInit,controller,dt,nSteps,physicalParams)
@@ -9,7 +9,8 @@ function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps
     % physicalParams - Struct with fields ('m','l','g')
     %
     % states         - [nSteps,2] array.
-    % controls       - [nSteps,1] array of torques.
+    % statesDot         - [nSteps,2] array of velocities.
+    % controls       - [nSteps,1] array of applied torques.
 
     % unpack physical params
     if isfield(physicalParams,'m')
@@ -31,6 +32,7 @@ function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps
     % states(i,1) = theta
     % states(i,2) = theta dot
     states = zeros(nSteps,2);
+    statesDot = zeros(nSteps,2);
     state = stateInit;
     
     % motion noise
@@ -52,5 +54,6 @@ function [t,states,controls] = forwardSimulateODE(stateInit,controller,dt,nSteps
         % otherwise unexpected things might happen
         state(1) = mod(state(1),2*pi);
         states(i,:) = state;
+        statesDot(i,:) = derivatives(t(i)-dt,state');
     end
 end

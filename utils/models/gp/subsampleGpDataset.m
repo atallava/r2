@@ -15,7 +15,15 @@ function subsampleGpDataset(fnameIn,arg2,fnameOut)
     if nargin < 2
         arg2 = 3000;
     end
-    data = load(fnameIn);
+    data = load(fnameIn,'x','y');
+    if ~isfield(data,'x')
+        error('x must be a field of data.');
+    end
+    
+    if ~isfield(data,'y')
+        error('y must be a field of data.');
+    end
+
     nElements = size(data.x,1);
     if arg2 <= 1
         nSubsampled = floor(arg2*nElements);
