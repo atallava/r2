@@ -1,12 +1,21 @@
 function F = movieFramesFromStates(states,physicalParams)
+    %MOVIEFRAMESFROMSTATES
+    %
+    % F = MOVIEFRAMESFROMSTATES(states,physicalParams)
+    %
+    % states         - [nStates,2] array.
+    % physicalParams - Struct.
+    %
+    % F              - Struct array of frames.
+    
     if isfield(physicalParams,'l')
         l = physicalParams.l;
     else
         error('l not a field in physicalParams.');
     end
     
-    % subsample states 
-    maxStates = 1e3;
+    % subsample states
+    maxStates = 100;
     if size(states,1) > maxStates
         startId = randsample(1:(size(states,1)-maxStates),1);
         ids = startId:(startId+maxStates-1);
