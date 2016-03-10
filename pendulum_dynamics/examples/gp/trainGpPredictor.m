@@ -1,9 +1,9 @@
 % inputs
 % fnames
-trainDatasetFname = '../../data/dataset_gp_1';
+trainDatasetFname = '../../data/gp/dataset_gp_1_train';
 trainFileType = 'model';
-datasetTransformFunc = @trajDatasetToGpDataset;
-gpWrapperFname = ['../data/gp_predictor' '_' myDateStamp(2:5)] ;
+datasetTransformFunc = @dynDatasetToGpDataset;
+gpWrapperFname = ['../../data/gp/gp_predictor' '_' myDateStamp(2:5)] ;
 
 %% gp params
 dimState = 1;

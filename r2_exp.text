@@ -12,3 +12,16 @@
 * henceforth, make variables being loading from file explicit
 * utils gp is common code. the individual folder contain code about how to
   transform datasets, predict over entire datasets, predict trajectories etc.
+* currently, will often save everything in file, but be careful when
+  loading. the drawbacks of this are the files might end up
+  being 1. large, 2. messy
+* while file structure convention by now is coming to be well-understood, file
+  naming convention, particularly the choice for functions vs scripts, is yet to
+  be worked out.
+* where are the physical parameters stored? make sure the dynamics dataset has
+  it.
+* converting dyn dataset to gp dataset, should that be in models/gp or
+  data_processors?
+* another inconsistency. are the data converters to deal in files or directly in
+  variables? for now, let the river flow as it feels convenient. to make things
+  most general, a struct will be required, which can make things very messy.

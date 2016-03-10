@@ -7,6 +7,10 @@ cd([pathToM '/gpml-matlab-v3.6-2015-07-07']);
 run('startup');
 cd(huskyDynamicsPath);
 
+% for gp models
+utilsPath = [pwd '/../utils'];
+addpath([utilsPath '/models/gp']);
+
 % for various helpers
 addpath(genpath([pathToM '/neato_utils']));
 

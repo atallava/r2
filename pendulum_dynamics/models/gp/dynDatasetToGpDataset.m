@@ -1,10 +1,26 @@
-function [x,y] = trajDatasetToGpDataset(fnameTrajectory)
-    load(fnameTrajectory,'physicalParams','controller','dt','state0','nSteps',...
-        't','states','statesDot','controls');
+function [x,y] = dynDatasetToGpDataset(dataset)
+    %DYNDATASETTOGPDATASET
+    %
+    % [x,y] = DYNDATASETTOGPDATASET(dataset)
+    %
+    % dataset - Dynamics dataset struct.
+    %
+    % x       - [nElements,1] array. Theta.
+    % y       - [nElements,1] array. Theta ddot.
     
-    % x is pendulum theta
-    x = [state0(1); states(1:end-1,1)];
-    % y is acceleration
+    nElements = length(dataset);
+    
+    % extract statesInit
+    statesInit = [dataset.stateInit];
+    statesInit = reshape(statesInit,2,numel(statesInit)/2); % [2,nElements]
+    statesInit = statesInit'; % [nElements,2];
+    
+    % extract statesDot
+    % ASSUMING: 1-step transitions
+    statesDot = [dataset.stateInit];
+    statesDot = reshape(statesDot,2,numel(statesDot)/2); % [2,nElements]
+    statesDot = statesDot'; % [nElements,2];
+    
+    x = statesInit(:,1);
     y = statesDot(:,2);
-    
 end
