@@ -1,12 +1,11 @@
-function [A,B,ABResidual] = linearizeAboutDesired(stateDesired,controlDesired,dt,physicalParams)
-    %LINEARIZEABOUTDESIRED 
-    % NOTE: A,B calculated with state represented as vector.
+function [A,B,ABResidual] = linearizeAtStateAndControl(stateDesired,controlDesired,dt,physicalParams)
+    %LINEARIZEATSTATEANDCONTROL
     %
-    % [A,B,ABResidual] = LINEARIZEABOUTDESIRED(stateDesired,controlDesired,dt,physicalParams)
+    % [A,B,ABResidual] = LINEARIZEATSTATEANDCONTROL(stateDesired,controlDesired,dt,physicalParams)
     %
     % stateDesired   - [1,2] vector.
     % controlDesired - Scalar.
-    % dt             - Scalar. 
+    % dt             - Scalar.
     % physicalParams - Struct.
     %
     % A              - [2,2] array.

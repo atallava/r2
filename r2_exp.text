@@ -25,3 +25,14 @@
 * another inconsistency. are the data converters to deal in files or directly in
   variables? for now, let the river flow as it feels convenient. to make things
   most general, a struct will be required, which can make things very messy.
+* controllers have the signature controller(t,state). if t is a vector, returns
+  a vector of states.
+* function names begin with a verb. but then, so do scripts, so no progress.
+* w/ dt 0.01, better to use state-dependent derivative in ode
+* some change in formats, now the returned states from forward simulate include
+  the initial state. this is to keep with ode.
+* code totally lacks asserts when it comes to dimensions of variables like
+  states, controls etc. introduce them.
+* what is the grammar of an assert? suppose x == 5 fails, 'x must equal 5.' or 'x
+  does not equal 5.' format: this is what was expected. this is what happened.
+

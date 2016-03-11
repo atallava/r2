@@ -1,9 +1,9 @@
 % physical parameters
-fnamePhysicalParams = '../data/physical_params';
+fnamePhysicalParams = '../../data/traj/physical_params';
 load(fnamePhysicalParams,'physicalParams');
 
 % linearization terms
-fnameLinearization = '../data/linearization_terms';
+fnameLinearization = '../../data/traj/linearization_terms';
 load(fnameLinearization,'stateDesired','controlDesired',...
     'A','B','dt','Q','R');
 
@@ -15,7 +15,7 @@ T = 5e3;
 KFinal = K{1};
 
 % tracking controller
-controller = lqrTrackingController(KFinal,stateDesired,controlDesired);
+controller = @(t,states) calcLqrHoverControls(t,states,KFinal,stateDesired,controlDesired);
 
 %% test convergence
 hf = figure;
@@ -26,5 +26,5 @@ plot(KMat);
 text(T,KMat(end,1),'t = T');
 
 %% save
-fnameController = '../data/lqr_tracking_controller';
+fnameController = '../../data/traj/lqr_hover_controller';
 save(fnameController);

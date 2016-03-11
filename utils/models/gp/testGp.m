@@ -28,10 +28,17 @@ function testGp(inputStruct)
             error('datasetTransformFunc not input.');
         end
     end
-    if isfield(inputStruct,'testResFname')
-        testResFname = inputStruct.testResFname;
+    if isfield(inputStruct,'saveRes')
+        saveRes = inputStruct.saveRes;
     else
-        testResFname = [];
+        saveRes = 0;
+    end
+    if saveRes
+        if isfield(inputStruct,'testResFname')
+            testResFname = inputStruct.testResFname;
+        else
+            error('testResFname not input.');
+        end
     end
     if isfield(inputStruct,'vizFlag')
         vizFlag = inputStruct.vizFlag;
@@ -75,7 +82,7 @@ function testGp(inputStruct)
     end
     
     % save
-    if ~isempty(testResFname)
+    if saveRes
         save(testResFname);
     end
 end

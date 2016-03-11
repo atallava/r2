@@ -2,11 +2,12 @@
 % fnames
 gpWrapperFname = '../../data/gp/gp_predictor_03091714';
 gpWrapperName = 'gpPredictor';
-testDatasetFname = '../../data/gp/dataset_gp_1_hold.mat';
+testDatasetFname = '../../data/gp/dataset_gp_1_train.mat';
 testFileType = 'model';
 datasetTransformFunc = @dynDatasetToGpDataset;
+saveRes = 0;
 testResFname = [gpWrapperFname '_test'];
-vizFlag = 0;
+vizFlag = 1;
 
 %% pack to struct
 inputStruct.gpWrapperFname = gpWrapperFname;
@@ -14,6 +15,7 @@ inputStruct.gpWrapperName = gpWrapperName;
 inputStruct.testDatasetFname = testDatasetFname;
 inputStruct.testFileType = testFileType;
 inputStruct.datasetTransformFunc = datasetTransformFunc;
+inputStruct.saveRes = saveRes;
 inputStruct.testResFname = testResFname;
 inputStruct.vizFlag = vizFlag;
 
