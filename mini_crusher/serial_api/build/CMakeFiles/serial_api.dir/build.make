@@ -52,9 +52,78 @@ include CMakeFiles/serial_api.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/serial_api.dir/flags.make
 
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o: CMakeFiles/serial_api.dir/flags.make
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o: ../src/DataSerializer.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o -c /usr0/home/atallav1/r2/mini_crusher/serial_api/src/DataSerializer.cpp
+
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/serial_api.dir/src/DataSerializer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /usr0/home/atallav1/r2/mini_crusher/serial_api/src/DataSerializer.cpp > CMakeFiles/serial_api.dir/src/DataSerializer.cpp.i
+
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/serial_api.dir/src/DataSerializer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /usr0/home/atallav1/r2/mini_crusher/serial_api/src/DataSerializer.cpp -o CMakeFiles/serial_api.dir/src/DataSerializer.cpp.s
+
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.requires:
+.PHONY : CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.requires
+
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.provides: CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.provides.build
+.PHONY : CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.provides
+
+CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.provides.build: CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o: CMakeFiles/serial_api.dir/flags.make
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o: ../src/FrameCheckSequence.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o -c /usr0/home/atallav1/r2/mini_crusher/serial_api/src/FrameCheckSequence.cpp
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /usr0/home/atallav1/r2/mini_crusher/serial_api/src/FrameCheckSequence.cpp > CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.i
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /usr0/home/atallav1/r2/mini_crusher/serial_api/src/FrameCheckSequence.cpp -o CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.s
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.requires:
+.PHONY : CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.requires
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.provides: CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.requires
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.provides.build
+.PHONY : CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.provides
+
+CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.provides.build: CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o: CMakeFiles/serial_api.dir/flags.make
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o: ../src/McPayloadCommunicator.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o -c /usr0/home/atallav1/r2/mini_crusher/serial_api/src/McPayloadCommunicator.cpp
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /usr0/home/atallav1/r2/mini_crusher/serial_api/src/McPayloadCommunicator.cpp > CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.i
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /usr0/home/atallav1/r2/mini_crusher/serial_api/src/McPayloadCommunicator.cpp -o CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.s
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.requires:
+.PHONY : CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.requires
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.provides: CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.requires
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.provides.build
+.PHONY : CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.provides
+
+CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.provides.build: CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o
+
 CMakeFiles/serial_api.dir/src/Test.cpp.o: CMakeFiles/serial_api.dir/flags.make
 CMakeFiles/serial_api.dir/src/Test.cpp.o: ../src/Test.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/serial_api.dir/src/Test.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/serial_api.dir/src/Test.cpp.o -c /usr0/home/atallav1/r2/mini_crusher/serial_api/src/Test.cpp
 
@@ -77,11 +146,17 @@ CMakeFiles/serial_api.dir/src/Test.cpp.o.provides.build: CMakeFiles/serial_api.d
 
 # Object files for target serial_api
 serial_api_OBJECTS = \
+"CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o" \
+"CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o" \
+"CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o" \
 "CMakeFiles/serial_api.dir/src/Test.cpp.o"
 
 # External object files for target serial_api
 serial_api_EXTERNAL_OBJECTS =
 
+../lib/libserial_api.so: CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o
+../lib/libserial_api.so: CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o
+../lib/libserial_api.so: CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o
 ../lib/libserial_api.so: CMakeFiles/serial_api.dir/src/Test.cpp.o
 ../lib/libserial_api.so: CMakeFiles/serial_api.dir/build.make
 ../lib/libserial_api.so: CMakeFiles/serial_api.dir/link.txt
@@ -92,6 +167,9 @@ serial_api_EXTERNAL_OBJECTS =
 CMakeFiles/serial_api.dir/build: ../lib/libserial_api.so
 .PHONY : CMakeFiles/serial_api.dir/build
 
+CMakeFiles/serial_api.dir/requires: CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o.requires
+CMakeFiles/serial_api.dir/requires: CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o.requires
+CMakeFiles/serial_api.dir/requires: CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o.requires
 CMakeFiles/serial_api.dir/requires: CMakeFiles/serial_api.dir/src/Test.cpp.o.requires
 .PHONY : CMakeFiles/serial_api.dir/requires
 

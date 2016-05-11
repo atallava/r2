@@ -6,13 +6,27 @@
 
 #IncludeRegexTransform: 
 
-../include/serial_api/Test.h
-string
+../include/serial_api/DataSerializer.h
+stdint.h
 -
 
-/usr0/home/atallav1/r2/mini_crusher/serial_api/src/Test.cpp
-string
+../include/serial_api/FrameCheckSequence.h
+inttypes.h
 -
-serial_api/Test.h
+
+../include/serial_api/McPayloadCommunicator.h
+inttypes.h
+-
+
+/usr0/home/atallav1/r2/mini_crusher/serial_api/src/McPayloadCommunicator.cpp
+stdio.h
+-
+math.h
+-
+serial_api/McPayloadCommunicator.h
+-
+serial_api/FrameCheckSequence.h
+-
+serial_api/DataSerializer.h
 -
 

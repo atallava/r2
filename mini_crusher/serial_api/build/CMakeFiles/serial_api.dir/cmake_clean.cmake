@@ -1,4 +1,7 @@
 FILE(REMOVE_RECURSE
+  "CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o"
+  "CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o"
+  "CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o"
   "CMakeFiles/serial_api.dir/src/Test.cpp.o"
   "../lib/libserial_api.pdb"
   "../lib/libserial_api.so"

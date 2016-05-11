@@ -30,6 +30,10 @@ include_directories(${SERIAL_API_INCLUDE_DIRECTORIES})
 
 # Add files here to compile them
 add_library(serial_api SHARED 	
+  src/DataSerializer.cpp
+  src/FrameCheckSequence.cpp
+  src/McPayloadCommunicator.cpp
+
   src/Test.cpp
   )
 

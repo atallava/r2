@@ -72,7 +72,7 @@ all: CMakeFiles/run_tests.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/run_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/run_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 0
 .PHONY : CMakeFiles/run_tests.dir/rule
@@ -97,7 +97,7 @@ clean: CMakeFiles/run_tests.dir/clean
 CMakeFiles/serial_api.dir/all:
 	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/depend
 	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles  2 3 4 5
 	@echo "Built target serial_api"
 .PHONY : CMakeFiles/serial_api.dir/all
 
@@ -107,7 +107,7 @@ all: CMakeFiles/serial_api.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/serial_api.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/serial_api.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles 0
 .PHONY : CMakeFiles/serial_api.dir/rule

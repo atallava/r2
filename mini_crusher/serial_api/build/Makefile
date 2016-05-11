@@ -127,6 +127,78 @@ serial_api/fast:
 	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/build
 .PHONY : serial_api/fast
 
+src/DataSerializer.o: src/DataSerializer.cpp.o
+.PHONY : src/DataSerializer.o
+
+# target to build an object file
+src/DataSerializer.cpp.o:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/DataSerializer.cpp.o
+.PHONY : src/DataSerializer.cpp.o
+
+src/DataSerializer.i: src/DataSerializer.cpp.i
+.PHONY : src/DataSerializer.i
+
+# target to preprocess a source file
+src/DataSerializer.cpp.i:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/DataSerializer.cpp.i
+.PHONY : src/DataSerializer.cpp.i
+
+src/DataSerializer.s: src/DataSerializer.cpp.s
+.PHONY : src/DataSerializer.s
+
+# target to generate assembly for a file
+src/DataSerializer.cpp.s:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/DataSerializer.cpp.s
+.PHONY : src/DataSerializer.cpp.s
+
+src/FrameCheckSequence.o: src/FrameCheckSequence.cpp.o
+.PHONY : src/FrameCheckSequence.o
+
+# target to build an object file
+src/FrameCheckSequence.cpp.o:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.o
+.PHONY : src/FrameCheckSequence.cpp.o
+
+src/FrameCheckSequence.i: src/FrameCheckSequence.cpp.i
+.PHONY : src/FrameCheckSequence.i
+
+# target to preprocess a source file
+src/FrameCheckSequence.cpp.i:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.i
+.PHONY : src/FrameCheckSequence.cpp.i
+
+src/FrameCheckSequence.s: src/FrameCheckSequence.cpp.s
+.PHONY : src/FrameCheckSequence.s
+
+# target to generate assembly for a file
+src/FrameCheckSequence.cpp.s:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/FrameCheckSequence.cpp.s
+.PHONY : src/FrameCheckSequence.cpp.s
+
+src/McPayloadCommunicator.o: src/McPayloadCommunicator.cpp.o
+.PHONY : src/McPayloadCommunicator.o
+
+# target to build an object file
+src/McPayloadCommunicator.cpp.o:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.o
+.PHONY : src/McPayloadCommunicator.cpp.o
+
+src/McPayloadCommunicator.i: src/McPayloadCommunicator.cpp.i
+.PHONY : src/McPayloadCommunicator.i
+
+# target to preprocess a source file
+src/McPayloadCommunicator.cpp.i:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.i
+.PHONY : src/McPayloadCommunicator.cpp.i
+
+src/McPayloadCommunicator.s: src/McPayloadCommunicator.cpp.s
+.PHONY : src/McPayloadCommunicator.s
+
+# target to generate assembly for a file
+src/McPayloadCommunicator.cpp.s:
+	$(MAKE) -f CMakeFiles/serial_api.dir/build.make CMakeFiles/serial_api.dir/src/McPayloadCommunicator.cpp.s
+.PHONY : src/McPayloadCommunicator.cpp.s
+
 src/Test.o: src/Test.cpp.o
 .PHONY : src/Test.o
 
@@ -185,6 +257,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... run_tests"
 	@echo "... serial_api"
+	@echo "... src/DataSerializer.o"
+	@echo "... src/DataSerializer.i"
+	@echo "... src/DataSerializer.s"
+	@echo "... src/FrameCheckSequence.o"
+	@echo "... src/FrameCheckSequence.i"
+	@echo "... src/FrameCheckSequence.s"
+	@echo "... src/McPayloadCommunicator.o"
+	@echo "... src/McPayloadCommunicator.i"
+	@echo "... src/McPayloadCommunicator.s"
 	@echo "... src/Test.o"
 	@echo "... src/Test.i"
 	@echo "... src/Test.s"

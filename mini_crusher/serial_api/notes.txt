@@ -1,5 +1,7 @@
-scratchpad
+project name SERIAL_API
+namespace serial_api
 
-project name is SERIAL_API. Hope that is ok.
-namespace will be serial_api
+where do the #defines go? putting in header for now
+
+variable names?
 
