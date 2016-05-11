@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/serial_api/Test.h
+string
+-
+
+/usr0/home/atallav1/r2/mini_crusher/serial_api/src/Test.cpp
+string
+-
+serial_api/Test.h
+-
+

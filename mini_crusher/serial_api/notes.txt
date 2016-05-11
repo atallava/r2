@@ -1,0 +1,5 @@
+scratchpad
+
+project name is SERIAL_API. Hope that is ok.
+namespace will be serial_api
+

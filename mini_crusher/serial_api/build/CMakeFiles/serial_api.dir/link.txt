@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC -g   -shared -Wl,-soname,libserial_api.so -o ../lib/libserial_api.so CMakeFiles/serial_api.dir/src/Test.cpp.o 
