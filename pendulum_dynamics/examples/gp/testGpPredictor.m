@@ -1,6 +1,6 @@
 % inputs
 % fnames
-gpWrapperFname = '../../data/gp/gp_predictor_03091714';
+gpWrapperFname = '../../data/gp/gp_predictor_04212146';
 gpWrapperName = 'gpPredictor';
 testDatasetFname = '../../data/gp/dataset_gp_1_train.mat';
 testFileType = 'model';
