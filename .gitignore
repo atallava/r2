@@ -32,4 +32,8 @@ main.log
 main.out
 main.pdf
 
+# cpp 
+build/
+bin/
+
 

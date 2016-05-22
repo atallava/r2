@@ -1,0 +1,7 @@
+project name SERIAL_API
+namespace serial_api
+
+where do the #defines go? putting in header for now
+
+variable names?
+

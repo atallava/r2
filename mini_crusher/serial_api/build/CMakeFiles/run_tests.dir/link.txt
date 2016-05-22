@@ -1,0 +1,1 @@
+/usr/bin/c++   -g    CMakeFiles/run_tests.dir/src/run_tests.cpp.o  -o ../bin/run_tests -rdynamic ../lib/libserial_api.so -lpthread -lboost_log -lboost_thread -Wl,-rpath,/usr0/home/atallav1/r2/mini_crusher/serial_api/lib 

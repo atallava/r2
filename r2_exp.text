@@ -34,5 +34,5 @@
 * code totally lacks asserts when it comes to dimensions of variables like
   states, controls etc. introduce them.
 * what is the grammar of an assert? suppose x == 5 fails, 'x must equal 5.' or 'x
-  does not equal 5.' format: this is what was expected. this is what happened.
+  does not equal 5.' format: this is what happened. this is what was expected. 
 
