@@ -1,2 +1,0 @@
-/usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles/run_tests.dir
-/usr0/home/atallav1/r2/mini_crusher/serial_api/build/CMakeFiles/serial_api.dir
