@@ -21,6 +21,7 @@ for i = 1:length(fnames)
     end
 end
 
+%% print error stats
 nGpWrappers = length(gpWrapperFnames);
 errWrappers = zeros(1,nGpWrappers);
 stt = cell(1,nGpWrappers);
@@ -55,6 +56,7 @@ for i = 1:nGpWrappers
     fprintf('\n%s\n\n',repmat('-',1,50));
 end
 
+%% best hyperparams
 [~,minId] = min(errWrappers);
 fprintf('Min error: %.4f\n',errWrappers(minId));
 fprintf('Mean function:\n');

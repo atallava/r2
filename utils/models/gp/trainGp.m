@@ -1,6 +1,15 @@
-function trainGp(inputStruct)
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % unpack variables
+function varargout = trainGp(inputStruct)
+    %TRAINGP
+    %
+    % varargout = TRAINGP(inputStruct)
+    %
+    % inputStruct -
+    %
+    % varargout   - {gpWrapper}
+    
+    %% unpack variables
+    
+    % training data
     if isfield(inputStruct,'trainDatasetFname')
         trainDatasetFname = inputStruct.trainDatasetFname;
     else
@@ -18,11 +27,8 @@ function trainGp(inputStruct)
             error('datasetTransformFunc not input.');
         end
     end
-    if isfield(inputStruct,'gpWrapperFname')
-        gpWrapperFname = inputStruct.gpWrapperFname;
-    else
-        error('gpWrapperFname not input.');
-    end
+    
+    % gp options
     if isfield(inputStruct,'infMethod')
         infMethod = inputStruct.infMethod;
     else
@@ -53,14 +59,32 @@ function trainGp(inputStruct)
     else
         error('maxIterations not input.');
     end
+
+    % wrapper options
     if isfield(inputStruct,'gpWrapperName')
         gpWrapperName = inputStruct.gpWrapperName;
     else
         error('gpWrapperName not input.');
     end
+    if isfield(inputStruct,'saveRes')
+        saveRes = inputStruct.saveRes;
+    else
+        saveRes = 0;
+    end
+    if saveRes
+        if isfield(inputStruct,'gpWrapperFname')
+            gpWrapperFname = inputStruct.gpWrapperFname;
+        else
+            error('gpWrapperFname not input.');
+        end
+    end    
+    if isfield(inputStruct,'dispFlag')
+        dispFlag = inputStruct.dispFlag;
+    else
+        dispFlag = false;
+    end
     
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % load training dataset
+    %% load training dataset
     switch trainFileType
         case 'model'
             load(trainDatasetFname,'x','y');
@@ -71,8 +95,10 @@ function trainGp(inputStruct)
             error('trainGp:invalidInput','trainFileType must be dyn or model');
     end
     
-    % optimize hyperparams
-    fprintf('Training %s.\n',gpWrapperName);
+    %% optimize hyperparams
+    if dispFlag
+        fprintf('%s: training %s.\n',mfilename,gpWrapperName);
+    end
     clockLocal = tic();
     
     % optimize on training nll
@@ -80,14 +106,28 @@ function trainGp(inputStruct)
     
     hyp = minimize(hyp,fun,-maxIterations);
     tComp = toc(clockLocal);
-    fprintf('Computation time: %.3f.\n',tComp);
+    
+    if dispFlag
+        fprintf('%s: computation time: %.3f.\n',mfilename,tComp);
+    end
     nll = gp(hyp,infMethod,meanFunc,covFunc,likFunc,x,y);
-    fprintf('Training data nll: %.3f.\n',nll);
     
-    % create gp wrapper function
-    line = sprintf('%s = @(xQuery) gp(hyp,infMethod,meanFunc,covFunc,likFunc,x,y,xQuery);',gpWrapperName);
-    eval(line);
+    if dispFlag
+        fprintf('%s: training data nll: %.3f.\n',mfilename,nll);
+    end
     
-    % save
-    save(gpWrapperFname);
+    %% create gp wrapper function
+    cmd = sprintf('%s = @(xQuery) gp(hyp,infMethod,meanFunc,covFunc,likFunc,x,y,xQuery);',gpWrapperName);
+    eval(cmd);
+    
+    %% save
+    if saveRes
+        save(gpWrapperFname);
+        if dispFlag
+            fprintf('%s: results saved in %s.\n',mfilename,gpWrapperFname);
+        end
+    end    
+    
+    %% output gpWrapper
+    varargout{1} = eval(gpWrapperName);
 end

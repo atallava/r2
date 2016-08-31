@@ -1,0 +1,113 @@
+\documentclass[a4paper, 11pt]{article}
+%\usepackage{fullpage}
+\setlength{\parindent}{0in}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage{cleveref}
+
+\newcommand{\empmean}{\bar{X}_n}
+\newcommand{\avgmean}{\bar{\mu}_n}
+\newcommand{\empmeank}{\bar{X}_{n+k}}
+\newcommand{\avgmeank}{\bar{\mu}_{n+k}}
+
+
+\title{Independent but not identical RVs}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+We see a sequence of random variables $X_1,X_2,\hdots X_N$ which are independent
+but not identically distributed, $X_i \sim F_i$. They are are converging in
+distribution to a random variable $X$, $X_i\xrightarrow{d}X$. It is assumed that
+the variables are bounded, $|X_i| \leq B,|X| \leq B$. Let the means be $\mu_i =
+EX_i, \mu = EX$, then $\mu_i\rightarrow \mu$. The rate of convergence of means
+is assumed to be of the form
+\begin{align}
+  |\mu_n-\mu| < Cn^{-\alpha}, 0 < C , 0 < \alpha < 1
+\end{align}
+The constants $C,\alpha$ are not known. From the observed data $\{X_i\}, i =
+1\dots N$, we wish to estimate the mean of the target distribution,
+$\mu$. Partial sums are denoted by $S_n = \sum_{i=1}^nX_i$. The empirical mean
+is $\empmean = \frac{S_n}{n}$, and average mean is $\avgmean =
+\frac{1}{n}\sum_{i=1}^n\mu_i$. A simple upper bound on the rate of convergence
+of average means $\avgmean$ to $\mu$ is
+\begin{align}
+ |\avgmean-\mu| &< \frac{1}{n}\sum_{i=1}^n|\mu_i-\mu| \nonumber \\
+ &< \frac{C}{n}\sum_{i=1}^n\frac{1}{i^\alpha} \nonumber \\
+ &< \frac{C}{n}.\frac{1}{1-\alpha}(n^{1-\alpha}-1) \nonumber
+ &&\text{($\sum_{i=1}^n\frac{1}{i^\alpha} < \int_1^n \frac{1}{x^\alpha}dx$)}\\ 
+ &< Cn^{-\alpha} &&\text{($\alpha < 1$)} \label{eq:avgmean_rate}
+\end{align}
+The constant is denoted by $C$ even after absorbing terms.
+
+$\empmean$ concentrates around $\avgmean$ according to, e.g.
+\begin{align} \label{eq:conc_ineq}
+  &P(|\empmean-\avgmean| > t) < 2\exp 
+  \left(\frac{-nt^2}{2\bar{\sigma}_n^2+\frac{2Bt}{3}}\right) \\
+  &\text{where},\bar{\sigma}_n^2 = \frac{1}{n}\sum_{i=1}^n\sigma_i^2 \nonumber
+\end{align}
+
+From the triangle inequality, $|\empmean-\mu| \leq
+|\bar{X_n}-\avgmean|+|\avgmean-\mu|$. The behaviour of the first term on
+the right hand side is given by Eq.~\ref{eq:conc_ineq}. The second term requires
+knowledge of the rate $\alpha$. 
+
+From the law of iterated logarithm,
+\begin{align} \label{eq:lil_n}
+  n^{1-\beta}(\empmean-\avgmean) \xrightarrow{a.s} 0
+\end{align}
+for $\beta > \frac{1}{2}$, or $1-\beta < \frac{1}{2}$. Let $k = k(n)$ be an
+integer-valued function of $n$ such that $k > 1,\; \forall\; n$. Then 
+\begin{align}
+  (n+k)^{1-\beta}(\empmeank-\avgmeank) \xrightarrow{a.s} 0
+\end{align}
+Since $\left(\frac{n}{n+k}\right)^{1-\beta} \rightarrow o(1)$, 
+\begin{align} \label{eq:lil_nk_2}
+  (n)^{1-\beta}(\empmeank-\avgmeank) \xrightarrow{a.s} 0 
+\end{align}
+From \cref{eq:lil_n,eq:lil_nk_2}
+\begin{align} \label{eq:emp_and_avg_means_zero}
+  n^{1-\beta}(\empmeank-\empmean)-n^{1-\beta}(\avgmeank-\avgmean)
+  \xrightarrow{a.s} 0
+\end{align}
+
+Considering the second term on the left hand side
+\begin{align}
+  n^{1-\beta}(\avgmeank-\avgmean) &\leq n^{1-\beta}|\avgmeank-\avgmean| \nonumber
+  \\
+  &\leq n^{1-\beta}(|\avgmeank-\mu|+|\avgmean-\mu|) \nonumber \\
+  &< C(n^{1-\beta}(n+k)^{-\alpha}+n^{1-\beta-\alpha}) \nonumber &&\text{(From Eq.~\ref{eq:avgmean_rate})}
+\end{align}
+
+If $1-\beta-\alpha < 0$, then 
+\begin{align} \label{eq:avgmeans_zero}
+  n^{1-\beta}(\avgmeank-\avgmean) \rightarrow 0 
+\end{align}
+From ~\cref{eq:avgmeans_zero,eq:emp_and_avg_means_zero},
+\begin{align} \label{eq:empmeans_zero}
+  n^{1-\beta}(\empmeank-\empmean) \xrightarrow{a.s} 0
+\end{align}
+
+$1-\beta < \frac{1}{2}$ from law of iterated logarithm, and we have $1-\beta <
+\alpha$, or $1-\beta < \min(1/2,\alpha)$. The rate of convergence of average
+means is estimable when slower than rate of convergence of empirical
+means. $1-\beta$ can be increased till it is seen that
+$n^{1-\beta}(\empmeank-\empmean) \not{\rightarrow} 0$. 
+
+If $k(n) = O(n)$, then we can even say by similar arguments that
+\begin{align} \label{eq:empmeans_zero_nk}
+  (n+k)^{1-\beta}(\empmeank-\empmean) \xrightarrow{a.s} 0
+\end{align}
+But if $k(n)$ is larger, then Eq.~\ref{eq:empmeans_zero_nk} does not hold, because
+in that case $(n+k)^{1-\beta}(\empmean-\avgmean) \not{\xrightarrow{a.s.}} 0$.
+
+\end{document}
+
+
